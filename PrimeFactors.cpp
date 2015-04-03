@@ -12,12 +12,12 @@ void primeFactors(long n)
     long m = sqrt(n);
     for (int i = 3; i <= m; i = i+2){
         while (n%i == 0){
-            cout<<i;
+            cout<<i<<" ";
             n = n/i;
         }
     }
     if (n > 2)
-      cout<<n;
+      cout<<n<<endl;
 }
 
 int main()
