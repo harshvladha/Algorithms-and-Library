@@ -4,7 +4,6 @@
 #include <cstring>
 #include <vector>
 #include <algorithm>
-
 using namespace std;
 
 struct node{
@@ -16,11 +15,12 @@ struct list{
 	node *head;
 };
 
-class digraph{
+class Graph{
 	int V;
-	list* array;
 	public:
-		digraph(int v){
+		list* array;
+	public:
+		Graph(int v){
 			V = v;
 
 			/*array of adjacency list*/
@@ -33,7 +33,7 @@ class digraph{
 		}
 		/* can also be written as 
 			public:
-				graph(int v):V(v){}
+				Graph(int v):V(v){}
 		*/
 		int getV(){return V;}
 
@@ -44,9 +44,14 @@ class digraph{
 			newNode->next = array[a].head;
 			array[a].head = newNode;
 			
+			/*Graph is undirected so add a edge from b to a */
+			node* newNode2 = (node*)malloc(sizeof(node));
+			newNode2->id = a;
+			newNode2->next = array[b].head;
+			array[b].head = newNode2;
 		}
 
-		void printDigraph(){
+		void printGraph(){
 			for(int i=0;i<V;i++){
 				node* crawl = array[i].head;
 				cout<<"\nAdjacency list of vertex "<<i<<"\n head ";
@@ -60,7 +65,7 @@ class digraph{
 };
 int main(){
 	int V = 5;
-	digraph g1(V);
+	Graph g1(V);
 	g1.addEdge(0,1);
 	g1.addEdge(0,4);
 	g1.addEdge(1,2);
@@ -69,11 +74,11 @@ int main(){
 	g1.addEdge(2,3);
 	g1.addEdge(3,4);
 
-	digraph g2(3);
+	Graph g2(3);
 	g2.addEdge(0,1);
 	g2.addEdge(1,2);
 
-	g1.printDigraph();
-	g2.printDigraph();
+	g1.printGraph();
+	g2.printGraph();
   	return 0;
 }
