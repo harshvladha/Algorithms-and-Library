@@ -4,7 +4,6 @@
 #include <cstring>
 #include <vector>
 #include <algorithm>
-
 using namespace std;
 
 struct node{
@@ -16,11 +15,12 @@ struct list{
 	node *head;
 };
 
-class graph{
+class Graph{
 	int V;
-	list* array;
 	public:
-		graph(int v){
+		list* array;
+	public:
+		Graph(int v){
 			V = v;
 
 			/*array of adjacency list*/
@@ -33,7 +33,7 @@ class graph{
 		}
 		/* can also be written as 
 			public:
-				graph(int v):V(v){}
+				Graph(int v):V(v){}
 		*/
 		int getV(){return V;}
 
@@ -44,7 +44,7 @@ class graph{
 			newNode->next = array[a].head;
 			array[a].head = newNode;
 			
-			/*graph is undirected so add a edge from b to a */
+			/*Graph is undirected so add a edge from b to a */
 			node* newNode2 = (node*)malloc(sizeof(node));
 			newNode2->id = a;
 			newNode2->next = array[b].head;
@@ -65,7 +65,7 @@ class graph{
 };
 int main(){
 	int V = 5;
-	graph g1(V);
+	Graph g1(V);
 	g1.addEdge(0,1);
 	g1.addEdge(0,4);
 	g1.addEdge(1,2);
@@ -74,7 +74,7 @@ int main(){
 	g1.addEdge(2,3);
 	g1.addEdge(3,4);
 
-	graph g2(3);
+	Graph g2(3);
 	g2.addEdge(0,1);
 	g2.addEdge(1,2);
 
