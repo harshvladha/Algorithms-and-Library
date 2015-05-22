@@ -1,9 +1,4 @@
-#include <iostream>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct node{
@@ -11,22 +6,22 @@ struct node{
 	node* next;
 };
 
-struct list{
+struct adjacencylist{
 	node *head;
 };
 
 class Graph{
 	int V;
 	public:
-		list* array;
+		adjacencylist* array;
 	public:
 		Graph(int v){
 			V = v;
 
-			/*array of adjacency list*/
-			array = (list*)malloc(V*sizeof(list));
+			/*array of adjacencylist*/
+			array = (adjacencylist*)malloc(V*sizeof(adjacencylist));
 
-			/*initialising each adjacency list as empty by making head as NULL */
+			/*initialising each adjacencylist as empty by making head as NULL */
 			for(int i=0;i<V;i++){
 				array[i].head = NULL;
 			}
@@ -38,7 +33,7 @@ class Graph{
 		int getV(){return V;}
 
 		void addEdge(int a, int b){
-			/*add an edge from a to b. A new node is added in the adjacency list of a. The node is added at the beginning */
+			/*add an edge from a to b. A new node is added in the adjacencylist of a. The node is added at the beginning */
 			node* newNode = (node*)malloc(sizeof(node));
 			newNode->id = b;
 			newNode->next = array[a].head;
@@ -54,7 +49,7 @@ class Graph{
 		void printGraph(){
 			for(int i=0;i<V;i++){
 				node* crawl = array[i].head;
-				cout<<"\nAdjacency list of vertex "<<i<<"\n head ";
+				cout<<"\nAdjacencylist of vertex "<<i<<"\n head ";
 				while(crawl){
 					cout<<"-> "<<crawl->id;
 					crawl = crawl->next;
@@ -64,21 +59,5 @@ class Graph{
 		}
 };
 int main(){
-	int V = 5;
-	Graph g1(V);
-	g1.addEdge(0,1);
-	g1.addEdge(0,4);
-	g1.addEdge(1,2);
-	g1.addEdge(1,3);
-	g1.addEdge(1,4);
-	g1.addEdge(2,3);
-	g1.addEdge(3,4);
-
-	Graph g2(3);
-	g2.addEdge(0,1);
-	g2.addEdge(1,2);
-
-	g1.printGraph();
-	g2.printGraph();
-  	return 0;
+	return 0;
 }
