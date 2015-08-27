@@ -10,7 +10,7 @@ struct adjacencylist{
 	node *head;
 };
 
-class Dqigraph{
+class Digraph{
 	int V;
 	adjacencylist* array;
 	public:

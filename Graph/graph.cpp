@@ -12,6 +12,7 @@ struct adjacencylist{
 
 class Graph{
 	int V;
+	vector<bool> marked;
 	public:
 		adjacencylist* array;
 	public:
@@ -25,11 +26,10 @@ class Graph{
 			for(int i=0;i<V;i++){
 				array[i].head = NULL;
 			}
+			for(int i=0;i<V;i++){
+				marked.push_back(false);
+			}
 		}
-		/* can also be written as 
-			public:
-				Graph(int v):V(v){}
-		*/
 		int getV(){return V;}
 
 		void addEdge(int a, int b){
@@ -46,18 +46,42 @@ class Graph{
 			array[b].head = newNode2;
 		}
 
-		void printGraph(){
-			for(int i=0;i<V;i++){
-				node* crawl = array[i].head;
-				cout<<"\nAdjacencylist of vertex "<<i<<"\n head ";
-				while(crawl){
-					cout<<"-> "<<crawl->id;
-					crawl = crawl->next;
+		//dfs to check cyclic or not
+		bool isCyclic(int v, int parent){
+			//mark the current node as visited
+			marked[v] = true;
+
+			//recur for all vertices adjacent to this vertex
+			node* it = array[v].head;
+			while(it!=NULL){
+				//if an adjacent is not visited, then recur for that adjacent
+				if(!marked[it->id]){
+					if(isCyclic(it->id, v)){
+						return true;
+					}
 				}
-				cout<<endl;
+
+				//if an adjacent is visited and not parent of current vertex
+				else if(it->id != parent)
+					return true;
+
+				it = it->next;
 			}
+
+			return false;
+
+		}
+
+		//return true if graph is a tree
+		bool isTree(){
+			if(isCyclic(0,1))
+				return false;
+
+			//check if all component is connected or not
+
+			for(int i=0; i<V; i++)
+				if(!marked[i])
+					return false;
+			return true;
 		}
 };
-int main(){
-	return 0;
-}
