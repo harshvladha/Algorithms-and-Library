@@ -53,8 +53,8 @@ int getRMQUtil(int *st, int ss, int se, int qs, int qe, int i){
 		return INT_MAX;
 	}
 	int mid = getMid(ss, se);
-	return min(getSumUtil(st, ss, mid, qs, qe, 2*i + 1),
-		   getSumUtil(st, mid + 1, se, qs, qe, 2*i + 2));
+	return min(getRMQUtil(st, ss, mid, qs, qe, 2*i + 1),
+		   getRMQUtil(st, mid + 1, se, qs, qe, 2*i + 2));
 }
 
 int getRMQ(int *st, int n, int qs, int qe){
@@ -75,6 +75,8 @@ int constructSTutil(int a[], int ss, int se, int *st, int si){
 
 	st[si] = min(constructSTutil(a, ss, mid, st, si*2 + 1),
 			 constructSTutil(a, mid+1, se, st, si*2 + 2));
+
+	return st[si];
 }
 
 int *constructST(int a[], int n){

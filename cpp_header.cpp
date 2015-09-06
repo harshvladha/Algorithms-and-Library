@@ -20,10 +20,41 @@ using namespace std;
 
 #define MAX 10000000 //10^7
 #define MOD 1000000007 // 10^9+7
-typedef long long ll
 
+#define endl "\n" //faster endl..
+
+typedef long long int ll;
+
+
+ll modPow(ll n, ll p, ll mod){
+	if(p<2)
+		return n%mod;
+	int i=2;
+	ll ans = (n*n)%mod;
+	while(i<p){
+		ans=(ans*n)%mod;
+		i++;
+	}
+	return ans;
+}
+int totalDigits(long number){
+	return floor(log10(abs(number))) + 1;
+}
+long reverseDigits(long number){
+	int length = totalDigits(number)-1;
+	long reverse=0;
+	long multiplier;
+	while(number>0){
+		multiplier = pow(10,length);
+		reverse += (number%10)*multiplier;
+		number = number/10;
+		length--;
+	}
+	return reverse;
+
+}
 int main(){
-
+	
 	return 0;
 }
 
