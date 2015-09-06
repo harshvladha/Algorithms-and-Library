@@ -39,8 +39,8 @@ ll fibonacci(int N){
 	matrix T(K+1, vector<ll>(K+1));
 	T[1][1] = 0; 
 	T[1][2] = 1;
-	T[2][1] = F1[2];
-	T[2][2] = F1[1];
+	T[2][1] = 1; //coefficient of kth
+	T[2][2] = 1; //coefficient of (k-1)th
 
 	//raise T to to the (N-1)th power
 	if(N==1)
