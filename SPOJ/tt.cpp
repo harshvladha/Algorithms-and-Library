@@ -10,7 +10,9 @@ struct node{
 
 int main(){
 	int a=5, b=6;
-	node c;
-	c.pode(a,b);
-	printf("%d\n", c.x);
+	long long x =0;
+	//node c;
+	x += a;
+	printf("%lld", x);
+
 }
