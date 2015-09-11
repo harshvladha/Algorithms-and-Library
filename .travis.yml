@@ -1,2 +1,4 @@
 language: cpp
 script:
+  - g++ Graph/digraph.cpp -o digraph
+  - ./digraph
