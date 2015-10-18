@@ -69,7 +69,6 @@ class Graph{
 			}
 
 			return false;
-
 		}
 
 		//return true if graph is a tree

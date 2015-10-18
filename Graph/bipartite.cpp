@@ -1,4 +1,4 @@
-bool isBipartite(){
+bool Graph::isBipartite(){
 
 			//assign initial color -1 to each vertex
 			int colorOfVertex[V];

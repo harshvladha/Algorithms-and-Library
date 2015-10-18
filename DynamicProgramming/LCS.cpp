@@ -35,8 +35,12 @@ int lcsDP(char *X, char *Y, int m, int n){
 	return dp[m][n];
 }
 int main(){
-	char x[] = "fft";
-	char y[] = "tff";
+	char x[51], y[51];
+	scanf("%s", x);
+	int l = strlen(x);
+	for(int i=0;i<l;i++){
+		y[i] = x[l-i-1];
+	}
 	int m = strlen(x);
 	int n = strlen(y);
 	printf("length of LCS(Recursive) is %d.\n", lcsR(x,y,m,n));
